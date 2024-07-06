@@ -14,7 +14,13 @@ interface QuizCompletedProps {
 }
 
 const QuizCompleted = ({ score, total, topic }: QuizCompletedProps) => {
-  const { theme } = useContext(ThemeContext);
+  const themeContext = useContext(ThemeContext);
+
+  if (!themeContext) {
+    throw new Error("ThemeContext is not defined");
+  }
+
+  const { theme } = themeContext;
   return (
     <>
       <div>

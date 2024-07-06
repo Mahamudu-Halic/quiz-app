@@ -20,8 +20,13 @@ const OptionsItem = ({
   answer,
   correctAnswer,
 }: OptionsItemProps) => {
-  const { theme } = useContext(ThemeContext);
-  console.log(theme);
+  const themeContext = useContext(ThemeContext);
+
+  if (!themeContext) {
+    throw new Error("ThemeContext is not defined");
+  }
+
+  const { theme } = themeContext;
   return (
     <button
       className={`${

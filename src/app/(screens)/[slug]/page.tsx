@@ -7,7 +7,13 @@ import QuizCompleted from "@/components/quizCompleted";
 import { QuestionsType, QuizCategory, Topic } from "../../../../types";
 import { useSearchParams } from "next/navigation";
 
-const QuizScreen = (props) => {
+interface QuizScreenProps {
+  params: {
+    slug: string;
+  };
+}
+
+const QuizScreen = ({ params }: QuizScreenProps) => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [completed, setCompleted] = useState(false);
   const [score, setScore] = useState(0);
@@ -30,7 +36,7 @@ const QuizScreen = (props) => {
   };
 
   useEffect(() => {
-    setLocation(props.params.slug);
+    setLocation(params.slug);
   }, []);
 
   useEffect(() => {
