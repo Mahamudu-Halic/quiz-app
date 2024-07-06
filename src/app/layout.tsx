@@ -20,7 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={"rubik.className overflow-hidden relative"}>
+      <body className={`${rubik.className} overflow-hidden relative`}>
         <ThemeContextProvider>
           <LayoutWrapper>{children}</LayoutWrapper>
         </ThemeContextProvider>

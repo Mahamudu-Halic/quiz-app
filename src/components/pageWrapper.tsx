@@ -6,13 +6,13 @@ import { Topic } from "../../types";
 import { Topics } from "../../constants";
 import { ThemeContext } from "@/service/theme.context";
 import { Button } from "./ui/button";
+import ThemeToggle from "./themeToggle";
 
 interface PageWrapperProps {
   children: ReactNode;
 }
 
 const PageWrapper = ({ children }: PageWrapperProps) => {
-  const { theme, toggleTheme } = useContext(ThemeContext);
   const [topic, setTopic] = useState<Topic | null>(null);
   const [location, setLocation] = useState<string>("");
 
@@ -35,9 +35,7 @@ const PageWrapper = ({ children }: PageWrapperProps) => {
     <div className="flex flex-col justify-center items-center w-full h-[100vh] mx-auto px-10 gap-10">
       <div className="flex items-start w-[70%] justify-between">
         {topic && <PageIconComponent topic={topic} />}
-        <Button className="ml-auto" onClick={toggleTheme}>
-          toggle
-        </Button>
+        <ThemeToggle />
       </div>
       <div className="flex items-start w-[70%] justify-between">{children}</div>
     </div>
