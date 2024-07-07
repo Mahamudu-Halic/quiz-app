@@ -9,15 +9,15 @@ interface OptionsItemProps {
   };
   selectedOption: string;
   handleSelectedOption: (value: string) => void;
-  correctAnswer: string;
-  answer: string;
+  correctAnswer: string | undefined;
+  answerStatus: string;
 }
 
 const OptionsItem = ({
   option,
   selectedOption,
   handleSelectedOption,
-  answer,
+  answerStatus,
   correctAnswer,
 }: OptionsItemProps) => {
   const themeContext = useContext(ThemeContext);
@@ -33,22 +33,22 @@ const OptionsItem = ({
         theme === "light" ? "bg-[#ffffff]" : "bg-[#475d7c]"
       } flex items-center gap-5 p-4 w-full rounded-lg group overflow-x-auto ${
         selectedOption === option?.id
-          ? answer === "correct"
+          ? answerStatus === "correct"
             ? "border-[2px] border-[#26D782]"
-            : answer === "wrong"
+            : answerStatus === "wrong"
             ? "border-[2px] border-[#EE5454]"
             : "border-[2px] border-[#A729F5]"
           : ""
       }`}
       onClick={() => handleSelectedOption(option?.id)}
-      disabled={answer !== ""}
+      disabled={answerStatus !== ""}
     >
       <div
         className={`w-[30px] h-[30px] rounded-md ${
           selectedOption === option?.id
-            ? answer === "correct"
+            ? answerStatus === "correct"
               ? "bg-[#26D782]"
-              : answer === "wrong"
+              : answerStatus === "wrong"
               ? "bg-[#EE5454]"
               : "bg-[#A729F5]"
             : theme === "light"
@@ -68,7 +68,7 @@ const OptionsItem = ({
         </p>
       </div>
       <p className="font-bold">{option?.content}</p>
-      {answer !== "" && (
+      {answerStatus !== "" && (
         <div className="ml-auto">
           {selectedOption === option?.id &&
             selectedOption !== correctAnswer && (

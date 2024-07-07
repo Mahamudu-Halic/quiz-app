@@ -1,19 +1,12 @@
 "use client";
-import Image from "next/image";
-import React, { useContext } from "react";
+import { useContext } from "react";
 import PageIconComponent from "./pageIconComponent";
-import { Topic } from "../../types";
 import Link from "next/link";
 import { Button } from "./ui/button";
 import { ThemeContext } from "@/service/theme.context";
+import { QuizContext } from "@/service/quiz.context";
 
-interface QuizCompletedProps {
-  score: number;
-  total: number;
-  topic: Topic;
-}
-
-const QuizCompleted = ({ score, total, topic }: QuizCompletedProps) => {
+const QuizCompleted = () => {
   const themeContext = useContext(ThemeContext);
 
   if (!themeContext) {
@@ -21,6 +14,13 @@ const QuizCompleted = ({ score, total, topic }: QuizCompletedProps) => {
   }
 
   const { theme } = themeContext;
+
+  const quizContext = useContext(QuizContext);
+
+  if (!quizContext) throw new Error("QuizContext is not defined");
+
+  const { score, handleLocation, quizQuestions } = quizContext;
+
   return (
     <>
       <div className="mb-10 lg:mb-0">
@@ -33,7 +33,7 @@ const QuizCompleted = ({ score, total, topic }: QuizCompletedProps) => {
             theme === "light" ? "bg-[#ffffff]" : "bg-[#475d7c]"
           } items-center rounded-xl p-5 min-h-[170px] min-w-[250px]`}
         >
-          <PageIconComponent topic={topic} />
+          <PageIconComponent />
           <p
             className={`${
               theme !== "light" && "text-white"
@@ -41,13 +41,16 @@ const QuizCompleted = ({ score, total, topic }: QuizCompletedProps) => {
           >
             {score}
           </p>
-          <p>out of {total}</p>
+          <p>out of {quizQuestions?.questions.length}</p>
         </div>
         <Link
           href={"/"}
           className="bg-[#A729F5] hover:bg-[#D394FA] text-white w-full"
         >
-          <Button className="bg-[#A729F5] hover:bg-[#D394FA] text-white w-full mt-5">
+          <Button
+            onClick={() => handleLocation("/")}
+            className="bg-[#A729F5] hover:bg-[#D394FA] text-white w-full mt-5"
+          >
             Play Again
           </Button>
         </Link>

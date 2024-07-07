@@ -1,35 +1,42 @@
-import React, { Fragment, useState } from "react";
+import { Fragment, useContext } from "react";
 import OptionsItem from "./optionsItem";
 import { Option } from "../../types";
+import { QuizContext } from "@/service/quiz.context";
 
 interface OptionsListProps {
-  options: Option[];
+  options: Option[] | undefined;
   selectedOption: string;
   handleSelectedOption: (value: string) => void;
-  correctAnswer: string;
-  answer: string;
+  answerStatus: string;
 }
 
 const OptionsList = ({
   options,
   selectedOption,
   handleSelectedOption,
-  answer,
-  correctAnswer,
+  answerStatus,
 }: OptionsListProps) => {
+  const quizContext = useContext(QuizContext);
+
+  if (!quizContext) throw new Error("QuizContext is not defined");
+
+  const { currentQuestion, quizQuestions } = quizContext;
   return (
     <div className="flex flex-col justify-center gap-5 ">
-      {options.map((option) => (
-        <Fragment key={option?.id}>
-          <OptionsItem
-            option={option}
-            selectedOption={selectedOption}
-            handleSelectedOption={handleSelectedOption}
-            correctAnswer={correctAnswer}
-            answer={answer}
-          />
-        </Fragment>
-      ))}
+      {options &&
+        options.map((option) => (
+          <Fragment key={option?.id}>
+            <OptionsItem
+              option={option}
+              correctAnswer={
+                quizQuestions?.questions[currentQuestion]?.correctAnswer
+              }
+              selectedOption={selectedOption}
+              handleSelectedOption={handleSelectedOption}
+              answerStatus={answerStatus}
+            />
+          </Fragment>
+        ))}
     </div>
   );
 };

@@ -1,31 +1,36 @@
 "use client";
-
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import OptionsList from "./optionsList";
 import { Button } from "./ui/button";
 import QuestionItem from "./questionItem";
 import Image from "next/image";
-import { Question } from "../../types";
 import { ThemeContext } from "@/service/theme.context";
+import { QuizContext } from "@/service/quiz.context";
 
-interface QuestionComponentProps {
-  question: Question;
-  total: number;
-  nextQuestion: () => void;
-  handleCompletion: () => void;
-  handleScore: () => void;
-}
-
-const QuestionComponent = ({
-  question,
-  total,
-  nextQuestion,
-  handleScore,
-  handleCompletion,
-}: QuestionComponentProps) => {
+const QuestionComponent = () => {
   const [selectedOption, setSelectedOption] = useState("");
   const [error, setError] = useState("");
-  const [answer, setAnswer] = useState("");
+  const [answerStatus, setAnswer] = useState("");
+
+  const quizContext = useContext(QuizContext);
+
+  if (!quizContext) throw new Error("QuizContext is not defined");
+
+  const {
+    currentQuestion,
+    handleCompletion,
+    handleNextQuestion,
+    handleScore,
+    quizQuestions,
+  } = quizContext;
+
+  const themeContext = useContext(ThemeContext);
+
+  if (!themeContext) {
+    throw new Error("ThemeContext is not defined");
+  }
+
+  const { theme } = themeContext;
 
   const handleSelectedOption = (value: string) => {
     setSelectedOption(value);
@@ -33,9 +38,12 @@ const QuestionComponent = ({
 
   const handleSubmit = () => {
     setError("");
-    if (!selectedOption) return setError("Please select an answer");
+    if (!selectedOption) return setError("Please select an answerStatus");
 
-    if (selectedOption === question?.correctAnswer) {
+    if (
+      selectedOption ===
+      quizQuestions?.questions[currentQuestion]?.correctAnswer
+    ) {
       setAnswer("correct");
       handleScore();
     } else {
@@ -47,38 +55,33 @@ const QuestionComponent = ({
     setError("");
     setAnswer("");
     setSelectedOption("");
-    nextQuestion();
-    question?.id === total && handleCompletion();
+    handleNextQuestion();
+    quizQuestions?.questions[currentQuestion]?.id ===
+      quizQuestions?.questions.length && handleCompletion();
   };
-
-  const themeContext = useContext(ThemeContext);
-
-  if (!themeContext) {
-    throw new Error("ThemeContext is not defined");
-  }
-
-  const { theme } = themeContext;
   return (
     <>
       <QuestionItem
-        content={question?.content}
-        quesNumber={question?.id}
-        total={total}
+        content={quizQuestions?.questions[currentQuestion]?.content}
+        quesNumber={quizQuestions?.questions[currentQuestion]?.id}
+        total={quizQuestions?.questions.length}
       />
       <div className="flex-1 w-full">
         <OptionsList
-          options={question?.options}
+          options={quizQuestions?.questions[currentQuestion]?.options}
           selectedOption={selectedOption}
           handleSelectedOption={handleSelectedOption}
-          correctAnswer={question?.correctAnswer}
-          answer={answer}
+          answerStatus={answerStatus}
         />
-        {answer !== "" ? (
+        {answerStatus !== "" ? (
           <Button
             onClick={handleNext}
             className="w-full hover:bg-[#D394FA] bg-[#A729F5] mt-5"
           >
-            {question?.id === total ? "Complete Quiz" : "Next Question"}
+            {quizQuestions?.questions[currentQuestion]?.id ===
+            quizQuestions?.questions.length
+              ? "Complete Quiz"
+              : "Next Question"}
           </Button>
         ) : (
           <Button
