@@ -1,11 +1,12 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import OptionsList from "./optionsList";
 import { Button } from "./ui/button";
 import QuestionItem from "./questionItem";
 import Image from "next/image";
 import { Question } from "../../types";
+import { ThemeContext } from "@/service/theme.context";
 
 interface QuestionComponentProps {
   question: Question;
@@ -49,6 +50,14 @@ const QuestionComponent = ({
     nextQuestion();
     question?.id === total && handleCompletion();
   };
+
+  const themeContext = useContext(ThemeContext);
+
+  if (!themeContext) {
+    throw new Error("ThemeContext is not defined");
+  }
+
+  const { theme } = themeContext;
   return (
     <>
       <QuestionItem
@@ -81,7 +90,11 @@ const QuestionComponent = ({
         )}
 
         {error && (
-          <div className="flex w-full justify-center gap-3 text-[#EE5454]">
+          <div
+            className={`flex w-full justify-center gap-3 mt-3 ${
+              theme === "light" ? "text-[#EE5454]" : "text-[#F4F6FA]"
+            }`}
+          >
             <Image
               src={"./icon-error.svg"}
               alt="error"

@@ -14,7 +14,7 @@ const QuestionItem = ({ quesNumber, content, total }: QuestionItemProps) => {
         Question {quesNumber} of {total}
       </p>
 
-      <p className="text-2xl md:text-4xl font-bold w-full">{content}</p>
+      <p className="text-lg md:text-4xl font-bold w-full">{content}</p>
 
       <div className="lg:my-0 lg:mt-auto lg:w-[60%] md:my-10 my-5">
         <Progress
