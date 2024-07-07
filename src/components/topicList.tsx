@@ -6,17 +6,22 @@ import TopicItem from "./topicItem";
 import { ThemeContext } from "@/service/theme.context";
 
 const TopicList = () => {
-  const { theme } = useContext(ThemeContext);
-  // const [theme, setTheme] = useState("light");
+  const themeContext = useContext(ThemeContext);
+
+  if (!themeContext) {
+    throw new Error("ThemeContext is not defined");
+  }
+
+  const { theme } = themeContext;
   return (
-    <div className="flex flex-col justify-center gap-5">
+    <div className="flex flex-col justify-center gap-5 flex-1 w-full">
       {Topics.map((topic) => (
         <Link
           href={topic?.topic.toLowerCase()}
           key={topic?.id}
           className={`${
             theme === "light" ? "bg-[#ffffff]" : "bg-[#475d7c]"
-          } flex items-center gap-5 p-4 w-[300px] rounded-lg`}
+          } flex items-center gap-5 p-4 w-full rounded-lg`}
         >
           <TopicItem topic={topic} />
         </Link>

@@ -32,12 +32,14 @@ const PageWrapper = ({ children }: PageWrapperProps) => {
   }, [location]);
 
   return (
-    <div className="flex flex-col justify-center items-center w-full h-[100vh] mx-auto px-10 gap-10">
-      <div className="flex items-start w-[70%] justify-between">
+    <div className="flex flex-col lg:justify-center items-center w-full h-[100vh] mx-auto px-10 gap-10 overflow-y-auto pt-10 lg:pt-0">
+      <div className="flex items-center lg:w-[80%] w-full justify-between">
         {topic && <PageIconComponent topic={topic} />}
         <ThemeToggle />
       </div>
-      <div className="flex items-start w-[70%] justify-between">{children}</div>
+      <div className="flex flex-col lg:flex-row lg:items-start lg:w-[80%] w-full lg:justify-between ">
+        {children}
+      </div>
     </div>
   );
 };

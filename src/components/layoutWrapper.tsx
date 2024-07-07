@@ -4,28 +4,29 @@ import React, { ReactNode, useContext, useState } from "react";
 
 const LayoutWrapper = ({ children }: { children: ReactNode }) => {
   //   const { theme } = useContext(ThemeContext);
-  const { theme } = useContext(ThemeContext);
+  const themeContext = useContext(ThemeContext);
 
-  //   const [theme, setTheme] = useState("light");
+  if (!themeContext) {
+    throw new Error("ThemeContext is not defined");
+  }
 
-  //   const toggleTheme = () => {
-  //     setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
-  //   };
+  const { theme } = themeContext;
+
   return (
     <div
       className={` h-[100vh] ${
         theme == "light" ? "bg-[#F4F6FA]" : "bg-[#3B4D66]"
-      } w-full px-20`}
+      } w-full`}
     >
       <div
-        className={`z-1 absolute left-[-350px] top-[-250px] ${
+        className={`z-1 absolute lg:left-[-350px] lg:top-[-250px] left-[-550px] top-[-150px] md:left-[-350px] md:top-[-200px] ${
           theme == "light" ? "bg-[#626c7f2c]" : "bg-[#313E51]"
-        }  w-[700px] h-[700px] rounded-full flex items-center justify-center`}
+        }  lg:w-[700px] w-[900px] h-[900px] lg:h-[700px] rounded-full flex items-center justify-center`}
       >
         <div
           className={`${
             theme == "light" ? "bg-[#F4F6FA]" : "bg-[#3B4D66]"
-          } w-[450px] h-[450px] rounded-full`}
+          } lg:w-[450px] lg:h-[450px] w-[550px] h-[650px] rounded-full`}
         ></div>
       </div>
       <div
@@ -36,9 +37,9 @@ const LayoutWrapper = ({ children }: { children: ReactNode }) => {
         {children}
       </div>
       <div
-        className={`absolute right-[-350px] bottom-[-250px] ${
+        className={`hidden absolute right-[-350px] bottom-[-250px] ${
           theme == "light" ? "bg-[#626c7f2c]" : "bg-[#313E51]"
-        } w-[700px] h-[700px] rounded-full flex items-center justify-center`}
+        } w-[700px] h-[700px] rounded-full lg:flex items-center justify-center`}
       >
         <div
           className={`${

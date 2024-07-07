@@ -18,7 +18,7 @@ const OptionsList = ({
   correctAnswer,
 }: OptionsListProps) => {
   return (
-    <div className="flex flex-col justify-center gap-5">
+    <div className="flex flex-col justify-center gap-5 ">
       {options.map((option) => (
         <Fragment key={option?.id}>
           <OptionsItem

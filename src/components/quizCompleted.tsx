@@ -23,9 +23,9 @@ const QuizCompleted = ({ score, total, topic }: QuizCompletedProps) => {
   const { theme } = themeContext;
   return (
     <>
-      <div>
-        <p className="text-4xl">Quiz completed</p>
-        <p className="font-bold text-5xl">You Scored...</p>
+      <div className="mb-10 lg:mb-0">
+        <p className="md:text-4xl text-2xl">Quiz completed</p>
+        <p className="font-bold md:text-5xl text-3xl">You Scored...</p>
       </div>
       <div>
         <div

@@ -31,7 +31,7 @@ const OptionsItem = ({
     <button
       className={`${
         theme === "light" ? "bg-[#ffffff]" : "bg-[#475d7c]"
-      } flex items-center gap-5 p-4 w-full rounded-lg group ${
+      } flex items-center gap-5 p-4 w-full rounded-lg group overflow-x-auto ${
         selectedOption === option?.id
           ? answer === "correct"
             ? "border-[2px] border-[#26D782]"

@@ -9,17 +9,17 @@ interface QuestionItemProps {
 
 const QuestionItem = ({ quesNumber, content, total }: QuestionItemProps) => {
   return (
-    <div className="flex flex-col h-[80%]">
-      <p className="text-[14px]">
+    <div className="flex flex-col lg:h-[80%] flex-1">
+      <p className="text-sm">
         Question {quesNumber} of {total}
       </p>
 
-      <p className="text-[32px] font-bold w-[400px]">{content}</p>
+      <p className="text-2xl md:text-4xl font-bold w-full">{content}</p>
 
-      <div className="mt-auto bg-white w-[60%]">
+      <div className="lg:my-0 lg:mt-auto lg:w-[60%] md:my-10 my-5">
         <Progress
           value={quesNumber * total}
-          className="bg-[#ffffff]   h-[5px]"
+          className="bg-[#ffffff]  h-[5px]"
         />
       </div>
     </div>

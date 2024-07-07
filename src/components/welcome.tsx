@@ -2,12 +2,12 @@ import React from "react";
 
 const WelcomeMessageComponent = () => {
   return (
-    <div className="">
-      <div className="flex flex-col mb-10">
-        <p className="text-4xl">Welcome to the</p>
-        <h1 className="text-5xl font-bold">Frontend Quiz!</h1>
+    <div className="flex-1">
+      <div className="mb-5 lg:mb-10">
+        <p className="md:text-4xl text-2xl">Welcome to the</p>
+        <h1 className="md:text-5xl text-3xl font-bold">Frontend Quiz!</h1>
       </div>
-      <p className="text-[14px]">Pick a subject to get started.</p>
+      <p className="text-sm mb-5">Pick a subject to get started.</p>
     </div>
   );
 };
