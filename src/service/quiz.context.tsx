@@ -11,7 +11,7 @@ interface QuizContextType {
   handleScore: () => void;
   handleNextQuestion: () => void;
   handleLocation: (value: string) => void;
-  hanldeReset: () => void;
+  handleReset: () => void;
 
   currentQuestion: number;
   completed: boolean;
