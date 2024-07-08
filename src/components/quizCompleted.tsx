@@ -19,7 +19,7 @@ const QuizCompleted = () => {
 
   if (!quizContext) throw new Error("QuizContext is not defined");
 
-  const { score, handleLocation, quizQuestions } = quizContext;
+  const { score, handleLocation, handleReset, quizQuestions } = quizContext;
 
   return (
     <>
@@ -48,7 +48,7 @@ const QuizCompleted = () => {
           className="bg-[#A729F5] hover:bg-[#D394FA] text-white w-full"
         >
           <Button
-            onClick={() => handleLocation("/")}
+            onClick={handleReset}
             className="bg-[#A729F5] hover:bg-[#D394FA] text-white w-full mt-5"
           >
             Play Again

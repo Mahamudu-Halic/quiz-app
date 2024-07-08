@@ -11,6 +11,7 @@ interface QuizContextType {
   handleScore: () => void;
   handleNextQuestion: () => void;
   handleLocation: (value: string) => void;
+  hanldeReset: () => void;
 
   currentQuestion: number;
   completed: boolean;
@@ -75,7 +76,15 @@ export const QuizContextProvider = ({ children }: QuizContextProviderProps) => {
     }
   };
 
+  const handleReset = () => {
+    setCompleted(false);
+    setScore(0);
+    setCurrentQuestion(0);
+    setTopic(null);
+  };
+
   const value = {
+    handleReset,
     getTopic,
     getQuestions,
     handleCompletion,

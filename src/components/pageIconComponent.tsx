@@ -10,7 +10,6 @@ const PageIconComponent = () => {
   const { topic } = quizContext;
 
   return (
-    window.location.pathname !== "/" &&
     topic && (
       <div className="flex gap-3 items-center">
         <div
