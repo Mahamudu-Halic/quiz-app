@@ -66,7 +66,7 @@ const QuestionComponent = () => {
         quesNumber={quizQuestions?.questions[currentQuestion]?.id}
         total={quizQuestions?.questions.length}
       />
-      <div className="flex-1 w-full">
+      <div className="flex-1 w-full mb-5">
         <OptionsList
           options={quizQuestions?.questions[currentQuestion]?.options}
           selectedOption={selectedOption}
