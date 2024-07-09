@@ -9,7 +9,7 @@ interface PageWrapperProps {
 
 const PageWrapper = ({ children }: PageWrapperProps) => {
   return (
-    <div className="flex flex-col lg:justify-center items-center w-full h-[100vh] mx-auto px-10 md:gap-10 gap-5 overflow-y-auto pt-10 lg:pt-0">
+    <div className="flex flex-col lg:justify-center items-center w-full h-[100vh] mx-auto px-5 md:gap-10 gap-5 overflow-y-auto pt-10 lg:pt-0">
       <div className="flex items-center lg:w-[80%] w-full justify-between">
         <PageIconComponent />
         <ThemeToggle />
