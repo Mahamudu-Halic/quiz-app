@@ -14,7 +14,7 @@ const LayoutWrapper = ({ children }: { children: ReactNode }) => {
 
   return (
     <div
-      className={` h-[100vh] ${
+      className={` h-[100vh] overflow-hidden relative ${
         theme == "light" ? "bg-[#F4F6FA]" : "bg-[#3B4D66]"
       } w-full`}
     >
