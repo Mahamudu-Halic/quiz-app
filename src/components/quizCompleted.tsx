@@ -47,10 +47,7 @@ const QuizCompleted = () => {
           href={"/"}
           className="bg-[#A729F5] hover:bg-[#D394FA] text-white w-full"
         >
-          <Button
-            onClick={handleReset}
-            className="bg-[#A729F5] hover:bg-[#D394FA] text-white w-full mt-5"
-          >
+          <Button className="bg-[#A729F5] hover:bg-[#D394FA] text-white w-full mt-5">
             Play Again
           </Button>
         </Link>

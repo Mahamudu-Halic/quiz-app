@@ -31,7 +31,7 @@ const OptionsItem = ({
     <button
       className={`${
         theme === "light" ? "bg-[#ffffff]" : "bg-[#475d7c]"
-      } flex items-center gap-5 p-4 w-full rounded-lg group overflow-x-auto ${
+      } flex items-center gap-5 p-4 w-full rounded-lg group ${
         selectedOption === option?.id
           ? answerStatus === "correct"
             ? "border-[2px] border-[#26D782]"
@@ -44,7 +44,7 @@ const OptionsItem = ({
       disabled={answerStatus !== ""}
     >
       <div
-        className={`w-[30px] h-[30px] rounded-md ${
+        className={`min-w-[30px] min-h-[30px] rounded-md ${
           selectedOption === option?.id
             ? answerStatus === "correct"
               ? "bg-[#26D782]"
@@ -67,9 +67,9 @@ const OptionsItem = ({
           {option?.id.toUpperCase()}
         </p>
       </div>
-      <p className="font-bold">{option?.content}</p>
+      <p className="font-bold overflow-x-auto">{option?.content}</p>
       {answerStatus !== "" && (
-        <div className="ml-auto">
+        <div className="ml-auto min-w-[20px] min-h-[20px]">
           {selectedOption === option?.id &&
             selectedOption !== correctAnswer && (
               <Image
