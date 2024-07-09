@@ -68,28 +68,26 @@ const OptionsItem = ({
         </p>
       </div>
       <p className="font-bold overflow-x-auto">{option?.content}</p>
-      {
-        <div className="ml-auto min-w-[20px] min-h-[20px]">
-          {answerStatus !== "" &&
-            selectedOption === option?.id &&
-            selectedOption !== correctAnswer && (
-              <Image
-                src={"./icon-error.svg"}
-                alt={"error"}
-                width={20}
-                height={20}
-              />
-            )}
-          {answerStatus !== "" && option?.id === correctAnswer && (
+      <div className="ml-auto min-w-[20px] min-h-[20px]">
+        {answerStatus !== "" &&
+          selectedOption === option?.id &&
+          selectedOption !== correctAnswer && (
             <Image
-              src={"./icon-correct.svg"}
+              src={"./icon-error.svg"}
               alt={"error"}
               width={20}
               height={20}
             />
           )}
-        </div>
-      }
+        {answerStatus !== "" && option?.id === correctAnswer && (
+          <Image
+            src={"./icon-correct.svg"}
+            alt={"error"}
+            width={20}
+            height={20}
+          />
+        )}
+      </div>
     </button>
   );
 };
