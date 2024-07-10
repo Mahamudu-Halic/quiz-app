@@ -38,7 +38,7 @@ const QuestionComponent = () => {
 
   const handleSubmit = () => {
     setError("");
-    if (!selectedOption) return setError("Please select an answerStatus");
+    if (!selectedOption) return setError("Please select an answer");
 
     if (
       selectedOption ===
