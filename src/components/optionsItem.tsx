@@ -31,14 +31,14 @@ const OptionsItem = ({
     <button
       className={`${
         theme === "light" ? "bg-[#ffffff]" : "bg-[#475d7c]"
-      } flex items-center gap-5 p-4 w-full rounded-lg group ${
+      } flex items-center gap-5 p-4 w-full rounded-lg group border-[2px]  ${
         selectedOption === option?.id
           ? answerStatus === "correct"
-            ? "border-[2px] border-[#26D782]"
+            ? "border-[#26D782]"
             : answerStatus === "wrong"
-            ? "border-[2px] border-[#EE5454]"
-            : "border-[2px] border-[#A729F5]"
-          : ""
+            ? "border-[#EE5454]"
+            : "border-[#A729F5]"
+          : "border-transparent"
       }`}
       onClick={() => handleSelectedOption(option?.id)}
       disabled={answerStatus !== ""}

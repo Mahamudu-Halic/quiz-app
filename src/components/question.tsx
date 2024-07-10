@@ -65,6 +65,7 @@ const QuestionComponent = () => {
         content={quizQuestions?.questions[currentQuestion]?.content}
         quesNumber={quizQuestions?.questions[currentQuestion]?.id}
         total={quizQuestions?.questions.length}
+        theme={theme}
       />
       <div className="flex-1 w-full mb-5">
         <OptionsList

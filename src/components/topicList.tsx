@@ -20,8 +20,10 @@ const TopicList = () => {
           href={topic?.topic.toLowerCase()}
           key={topic?.id}
           className={`${
-            theme === "light" ? "bg-[#ffffff]" : "bg-[#475d7c]"
-          } flex items-center gap-5 p-4 w-full rounded-lg`}
+            theme === "light"
+              ? "bg-[#ffffff] hover:border-[#A729F5] border-[#ffffff]"
+              : "bg-[#475d7c] hover:border-[#ffffff] border-[#475d7c]"
+          } flex items-center gap-5 p-4 w-full rounded-lg border`}
         >
           <TopicItem topic={topic} />
         </Link>
