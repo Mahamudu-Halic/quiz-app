@@ -1,8 +1,8 @@
 "use client";
 
 import { createContext, ReactNode, useEffect, useState } from "react";
-import { QuestionsType, QuizCategory, Topic } from "../../types";
-import { Questions, Topics } from "../../constants";
+import { QuizCategory, Topic } from "../../types";
+import { Topics } from "../../constants";
 
 interface QuizContextType {
   getTopic: () => void;
@@ -37,6 +37,28 @@ export const QuizContextProvider = ({ children }: QuizContextProviderProps) => {
   const [location, setLocation] = useState<string>("");
   const [quizQuestions, setQuizQuestions] = useState<QuizCategory | null>(null);
   const [topic, setTopic] = useState<Topic | null>(null);
+  const [quizzes, setQuizzes] = useState<QuizCategory[] | null>(null);
+
+  const fetchQuizzes = async () => {
+    try {
+      const response = await fetch("/data.json");
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      const data = await response.json();
+      // console.log(data);
+      setQuizzes(data.quizzes);
+    } catch (error) {
+      console.error(
+        "There has been a problem with your fetch operation:",
+        error
+      );
+    }
+  };
+
+  useEffect(() => {
+    fetchQuizzes();
+  }, []);
 
   const getTopic = () => {
     const data = Topics.find(
@@ -46,9 +68,12 @@ export const QuizContextProvider = ({ children }: QuizContextProviderProps) => {
   };
 
   const getQuestions = () => {
-    setQuizQuestions(
-      (Questions as QuestionsType)[location as keyof QuestionsType]
-    );
+    if (quizzes) {
+      const quiz = quizzes.find(
+        (item) => item?.title.toLowerCase() === location.toLocaleLowerCase()
+      );
+      quiz && setQuizQuestions(quiz);
+    }
   };
 
   useEffect(() => {

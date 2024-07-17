@@ -16,7 +16,8 @@ const QuizScreen = ({ params }: QuizScreenProps) => {
 
   if (!quizContext) throw new Error("QuizContext is not defined");
 
-  const { completed, handleLocation, quizQuestions, topic } = quizContext;
+  const { completed, handleLocation, handleReset, quizQuestions, topic } =
+    quizContext;
 
   useEffect(() => {
     handleLocation(params.slug);

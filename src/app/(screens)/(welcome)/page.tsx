@@ -17,12 +17,12 @@ export default function Home({ params }: HomeProps) {
 
   if (!quizContext) throw new Error("QuizContext is not defined");
 
-  const { completed, handleLocation, quizQuestions, topic, handleReset } =
-    quizContext;
+  const { handleLocation, handleReset } = quizContext;
 
   useEffect(() => {
     handleLocation(params.slug);
     handleReset();
+    console.log("reset");
   }, []);
 
   return (

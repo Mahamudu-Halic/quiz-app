@@ -10,7 +10,7 @@ import { QuizContext } from "@/service/quiz.context";
 const QuestionComponent = () => {
   const [selectedOption, setSelectedOption] = useState("");
   const [error, setError] = useState("");
-  const [answerStatus, setAnswer] = useState("");
+  const [answerStatus, setAnswerStatus] = useState("");
 
   const quizContext = useContext(QuizContext);
 
@@ -40,30 +40,27 @@ const QuestionComponent = () => {
     setError("");
     if (!selectedOption) return setError("Please select an answer");
 
-    if (
-      selectedOption ===
-      quizQuestions?.questions[currentQuestion]?.correctAnswer
-    ) {
-      setAnswer("correct");
+    if (selectedOption === quizQuestions?.questions[currentQuestion]?.answer) {
+      setAnswerStatus("correct");
       handleScore();
     } else {
-      setAnswer("wrong");
+      setAnswerStatus("wrong");
     }
   };
 
   const handleNext = () => {
     setError("");
-    setAnswer("");
+    setAnswerStatus("");
     setSelectedOption("");
     handleNextQuestion();
-    quizQuestions?.questions[currentQuestion]?.id ===
-      quizQuestions?.questions.length && handleCompletion();
+    currentQuestion + 1 === quizQuestions?.questions.length &&
+      handleCompletion();
   };
   return (
     <>
       <QuestionItem
-        content={quizQuestions?.questions[currentQuestion]?.content}
-        quesNumber={quizQuestions?.questions[currentQuestion]?.id}
+        question={quizQuestions?.questions[currentQuestion]?.question}
+        quesNumber={currentQuestion + 1}
         total={quizQuestions?.questions.length}
         theme={theme}
       />
@@ -79,8 +76,7 @@ const QuestionComponent = () => {
             onClick={handleNext}
             className="w-full hover:bg-[#D394FA] bg-[#A729F5] mt-5"
           >
-            {quizQuestions?.questions[currentQuestion]?.id ===
-            quizQuestions?.questions.length
+            {currentQuestion + 1 === quizQuestions?.questions.length
               ? "Complete Quiz"
               : "Next Question"}
           </Button>
@@ -100,7 +96,7 @@ const QuestionComponent = () => {
             }`}
           >
             <Image
-              src={"./icon-error.svg"}
+              src={"./assets/icon-error.svg"}
               alt="error"
               width={20}
               height={20}

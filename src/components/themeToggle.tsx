@@ -14,14 +14,14 @@ const ThemeToggle = () => {
     <div className="flex items-center ml-auto">
       {theme === "light" ? (
         <Image
-          src={"./icon-sun-dark.svg"}
+          src={"./assets/icon-sun-dark.svg"}
           alt="moon light"
           width={20}
           height={20}
         />
       ) : (
         <Image
-          src={"./icon-sun-light.svg"}
+          src={"./assets/icon-sun-light.svg"}
           alt="moon light"
           width={20}
           height={20}
@@ -45,14 +45,14 @@ const ThemeToggle = () => {
       </label>
       {theme === "light" ? (
         <Image
-          src={"./icon-moon-dark.svg"}
+          src={"./assets/icon-moon-dark.svg"}
           alt="moon light"
           width={20}
           height={20}
         />
       ) : (
         <Image
-          src={"./icon-moon-light.svg"}
+          src={"./assets/icon-moon-light.svg"}
           alt="moon light"
           width={20}
           height={20}

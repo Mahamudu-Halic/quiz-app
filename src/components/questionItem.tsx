@@ -3,14 +3,14 @@ import { Progress } from "./ui/progress";
 
 interface QuestionItemProps {
   quesNumber: number | undefined;
-  content: string | undefined;
+  question: string | undefined;
   total: number | undefined;
   theme: string | undefined;
 }
 
 const QuestionItem = ({
   quesNumber,
-  content,
+  question,
   total,
   theme,
 }: QuestionItemProps) => {
@@ -20,7 +20,7 @@ const QuestionItem = ({
         Question {quesNumber} of {total}
       </p>
 
-      <p className="text-lg md:text-4xl font-bold w-full">{content}</p>
+      <p className="text-lg md:text-4xl font-bold w-full">{question}</p>
 
       {quesNumber && total && (
         <div className="lg:my-0 lg:mt-auto lg:w-[60%] md:my-10 my-5">

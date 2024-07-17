@@ -1,17 +1,16 @@
 export interface Option {
-  id: string;
-  content: string;
+  text: string;
 }
 
 export interface Question {
-  id: number;
-  type: string;
-  content: string;
-  options: Option[];
-  correctAnswer: string;
+  question: string;
+  options: string[];
+  answer: string;
 }
 
 export interface QuizCategory {
+  title: string;
+  icon: string;
   questions: Question[];
 }
 
